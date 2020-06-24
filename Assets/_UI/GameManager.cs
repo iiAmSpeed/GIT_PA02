@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Lives = 3;
-        Score = 0;
+        PlayerPrefs.SetInt("Score", 0);
         Time.timeScale = 0;
         CurrentState = GameState.GameIdle;
     }
@@ -30,7 +30,14 @@ public class GameManager : MonoBehaviour
 
         else if(CurrentState == GameState.GameOver && Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("GameOver");
+        }
+
+        if(Lives <= 0)
+        {
+            HUD.HUDManager.GameOver();
+
         }
     }
+
 }

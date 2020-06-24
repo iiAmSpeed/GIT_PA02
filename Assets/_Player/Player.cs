@@ -13,7 +13,11 @@ public class Player : MonoBehaviour
     private Transform playerMesh = null;
     private Animator thisAnimator = null;
 
+    public GameObject explosion;
+
     private float moveSpeed = 0.05f;
+
+    
 
     void Start()
     {
@@ -54,4 +58,18 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, transform.position.z);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Obstacles")
+        {
+            GameManager.Lives -= 1;
+            HUD.HUDManager.UpdateLives();
+            Instantiate(explosion, transform.position, Quaternion.identity);
+        }
+
+        else if (other.gameObject.tag == "score")
+        {
+            HUD.HUDManager.UpdateScore();
+        }
+    }
 }
