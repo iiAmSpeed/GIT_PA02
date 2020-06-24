@@ -26,10 +26,6 @@ public class HUD : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SceneManager.LoadScene("SampleScene");
-        }
     }
 
     //updates the number of hearts for lives
